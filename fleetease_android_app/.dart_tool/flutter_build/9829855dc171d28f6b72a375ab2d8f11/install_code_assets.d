@@ -1,0 +1,1 @@
+ /home/kavia/workspace/code-generation/fleet-management-system-179272-179281/fleetease_android_app/.dart_tool/flutter_build/9829855dc171d28f6b72a375ab2d8f11/native_assets.json: 
