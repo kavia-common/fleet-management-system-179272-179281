@@ -1,0 +1,2 @@
+# Marker file indicating this repository hosts a Flutter project.
+# CI: do not run flutter commands from repo root; use run_flutter_checks.sh or `make analyze`.

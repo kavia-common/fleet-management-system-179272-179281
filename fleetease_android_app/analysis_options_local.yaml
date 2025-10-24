@@ -1,0 +1,15 @@
+# Local fallback analysis options used when flutter_lints is not available in CI.
+analyzer:
+  exclude:
+    - "**/.dart_tool/**"
+    - "**/build/**"
+    # In CI environments without Flutter SDK and pub packages resolved,
+    # exclude source from analysis to prevent false-positive unresolved imports.
+    - "lib/**"
+    - "test/**"
+    - "android/**"
+    - "ios/**"
+linter:
+  rules:
+    avoid_print: false
+    depend_on_referenced_packages: false

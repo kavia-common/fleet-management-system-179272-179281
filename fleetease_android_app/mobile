@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Proxy to run Flutter commands from the correct app directory.
+set -euo pipefail
+APP_DIR="fleet-management-system-179272-179281/fleetease_android_app"
+cd "$APP_DIR"
+flutter "$@"

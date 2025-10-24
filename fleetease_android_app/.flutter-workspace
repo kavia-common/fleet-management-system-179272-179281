@@ -1,0 +1,3 @@
+# This file helps CI/analyzers locate the actual Flutter project directory.
+# Tools should cd into this path before running any Flutter commands.
+fleet-management-system-179272-179281/fleetease_android_app

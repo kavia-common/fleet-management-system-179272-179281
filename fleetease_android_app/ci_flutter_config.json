@@ -1,0 +1,8 @@
+{
+  "flutter_app_dir": "fleet-management-system-179272-179281/fleetease_android_app",
+  "commands": {
+    "analyze": "flutter analyze",
+    "test": "flutter test",
+    "pub_get": "flutter pub get"
+  }
+}

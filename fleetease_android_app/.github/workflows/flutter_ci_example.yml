@@ -1,0 +1,17 @@
+name: Flutter CI Example
+
+on:
+  workflow_dispatch:
+
+jobs:
+  analyze-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - name: Run Flutter CI
+        run: bash .ci_run_flutter.sh

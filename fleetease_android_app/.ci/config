@@ -1,0 +1,12 @@
+# CI configuration hint for runners to identify the Flutter project directory.
+# Many internal CI templates read this file to determine where to run mobile analysis.
+[flutter]
+project_dir = fleet-management-system-179272-179281/fleetease_android_app
+
+[defaults]
+# When true, CI should `cd` to the project_dir before invoking Flutter commands.
+cd_into_project = true
+
+# Default commands that CI can trigger
+analyze_cmd = flutter analyze
+test_cmd = flutter test

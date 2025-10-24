@@ -1,0 +1,8 @@
+analyzer:
+  exclude:
+    - "**/.dart_tool/**"
+    - "**/build/**"
+linter:
+  rules:
+    avoid_print: false
+    depend_on_referenced_packages: false

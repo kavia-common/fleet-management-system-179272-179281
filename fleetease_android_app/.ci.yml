@@ -1,0 +1,25 @@
+version: 1
+jobs:
+  mobile:
+    steps:
+      - name: Show repo root
+        run: |
+          pwd
+          ls -la
+      - name: Change to Flutter app directory
+        run: |
+          cd fleet-management-system-179272-179281/fleetease_android_app
+          pwd
+          ls -la
+      - name: Install dependencies
+        run: |
+          cd fleet-management-system-179272-179281/fleetease_android_app
+          flutter pub get
+      - name: Analyze
+        run: |
+          cd fleet-management-system-179272-179281/fleetease_android_app
+          flutter analyze
+      - name: Test
+        run: |
+          cd fleet-management-system-179272-179281/fleetease_android_app
+          CI=true flutter test -r expanded

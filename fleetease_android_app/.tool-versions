@@ -1,0 +1,4 @@
+# Tool versions hint for CI environments using asdf
+# (Optional) CI may ignore this file if asdf is not used.
+flutter latest
+dart latest

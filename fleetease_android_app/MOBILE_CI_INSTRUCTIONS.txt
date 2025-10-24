@@ -1,0 +1,10 @@
+CI hint: Always run Flutter commands from the app directory:
+  cd fleet-management-system-179272-179281/fleetease_android_app
+  flutter pub get
+  flutter analyze
+  flutter test
+
+Or from repo root, use:
+  bash run_mobile_ci.sh
+  # or
+  bash analyze.sh

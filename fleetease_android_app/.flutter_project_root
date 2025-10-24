@@ -1,0 +1,2 @@
+# Marker file indicating this is the Flutter project root for CI and analyzers.
+# CI runners should execute Flutter commands from this directory.

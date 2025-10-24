@@ -1,0 +1,11 @@
+CI must run Flutter commands inside:
+fleet-management-system-179272-179281/fleetease_android_app
+
+From repo root, run one of:
+- bash run_flutter_ci_robust.sh
+- ./flutterw analyze && CI=true ./flutterw test -r expanded
+- bash run_mobile_checks.sh
+- bash universal_mobile_ci.sh
+
+If you see: "Could not determine project root directory for Flutter project"
+It means Flutter ran outside the app directory above.

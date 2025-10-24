@@ -1,0 +1,2 @@
+# CI hint: path to the Flutter project directory for analysis and tests.
+FLUTTER_PROJECT_DIR=fleet-management-system-179272-179281/fleetease_android_app

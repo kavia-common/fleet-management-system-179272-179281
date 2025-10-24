@@ -1,0 +1,8 @@
+# Tooling hint for CI analyzers
+# Some CI environments require a simple marker to detect the Flutter project root.
+# The actual Flutter project root is this directory containing pubspec.yaml.
+project_root: fleetease_android_app
+pubspec: ./pubspec.yaml
+android: ./android
+lib: ./lib
+analysis_options: ./analysis_options.yaml

@@ -1,0 +1,10 @@
+This repository contains a Flutter application located at:
+fleet-management-system-179272-179281/fleetease_android_app
+
+For CI, run:
+- ./flutterw analyze
+- ./flutterw test -r expanded
+or use:
+- bash ci.sh
+- bash analyze.sh
+- bash test.sh

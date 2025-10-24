@@ -1,0 +1,2 @@
+# This file is deprecated but present to assist certain CI analyzers in root detection.
+# For modern tooling, package_config.json in .dart_tool is used.
