@@ -1,21 +1,34 @@
 #!/usr/bin/env bash
 set -euo pipefail
-
-# Single entrypoint for CI systems. Ensures all Flutter commands run from the app directory.
-# Usage (from repo root):
+# Unified CI entrypoint. Always cd into the Flutter app before running Flutter.
+# Usage:
 #   bash ci_entrypoint.sh analyze
 #   bash ci_entrypoint.sh test
-#   bash ci_entrypoint.sh "build apk --debug"
-# If your CI runs 'flutter analyze' directly from repo root, replace it with:
-#   bash ci_entrypoint.sh analyze
 
-CMD="${1:-analyze}"
+APP_DIR="fleet-management-system-179272-179281/fleetease_android_app"
 
-# Normalize args into an array
-IFS=' ' read -r -a ARGS <<< "$CMD"
+if [ ! -d "$APP_DIR" ]; then
+  echo "[ci_entrypoint] ERROR: App directory not found: $APP_DIR" >&2
+  exit 1
+fi
 
-# Ensure scripts are executable
-chmod +x flutterw.sh || true
+cd "$APP_DIR"
 
-# Delegate to wrapper which cd's into the app dir
-./flutterw.sh "${ARGS[@]}"
+ACTION="${1:-analyze}"
+case "$ACTION" in
+  analyze)
+    flutter pub get
+    flutter analyze
+    ;;
+  test)
+    flutter pub get
+    CI=true flutter test -r expanded
+    ;;
+  *)
+    echo "[ci_entrypoint] Unknown action: $ACTION"
+    echo "Usage: bash ci_entrypoint.sh [analyze|test]"
+    exit 2
+    ;;
+esac
+
+echo "[ci_entrypoint] $ACTION completed successfully."

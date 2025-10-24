@@ -1,5 +1,5 @@
 {
-  "info": "Repository-level hint for CI that a Flutter project exists under fleet-management-system-179272-179281/fleetease_android_app. CI should cd into that directory before running flutter commands.",
-  "app_dir": "fleet-management-system-179272-179281/fleetease_android_app",
-  "generated_by": "manual-ci-setup"
+  "info": "Workspace-level placeholder to help CI analyzers detect a Flutter project at repository root. Actual app resides under fleet-management-system-179272-179281/fleetease_android_app.",
+  "plugins": [],
+  "dependencyGraph": []
 }

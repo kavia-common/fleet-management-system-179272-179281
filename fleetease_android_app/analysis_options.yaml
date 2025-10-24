@@ -2,5 +2,5 @@ include: package:flutter_lints/flutter.yaml
 
 linter:
   rules:
-    # Keep root light; real settings live under the Flutter app.
+    # Keep root stub strict but minimal; this file avoids tool failures when run from repo root.
     avoid_print: false

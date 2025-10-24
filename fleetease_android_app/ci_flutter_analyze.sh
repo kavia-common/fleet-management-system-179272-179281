@@ -1,16 +1,21 @@
-#!/usr/bin/env bash
-# Simple CI shim to run Flutter analyze from the correct project directory.
-# This avoids "Could not determine project root directory for Flutter project".
-set -euo pipefail
+#!/usr/bin/env sh
+set -eu
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-APP_DIR="$ROOT_DIR/fleet-management-system-179272-179281/fleetease_android_app"
+# Minimal POSIX shell wrapper for CI environments that call:
+#   sh ci_flutter_analyze.sh
+# from the repository root. It runs `flutter analyze` inside the
+# FleetEase Flutter app directory.
 
-if [ ! -f "$APP_DIR/pubspec.yaml" ]; then
-  echo "[ci] ERROR: pubspec.yaml not found in $APP_DIR"
-  exit 2
+APP_DIR="fleet-management-system-179272-179281/fleetease_android_app"
+
+if [ ! -d "$APP_DIR" ]; then
+  echo "[ci_flutter_analyze] ERROR: App directory not found: $APP_DIR" >&2
+  exit 1
 fi
 
-cd "$APP_DIR"
-echo "[ci] Running flutter analyze in: $(pwd)"
-exec flutter analyze
+# Use subshell to avoid changing parent shell PWD.
+(
+  cd "$APP_DIR"
+  flutter pub get
+  flutter analyze
+)

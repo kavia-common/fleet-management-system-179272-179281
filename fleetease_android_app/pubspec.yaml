@@ -1,19 +1,32 @@
-name: fleetease_workspace_stub
-description: "Root-level Flutter stub to satisfy CI project-root detection. Real app is under fleet-management-system-179272-179281/fleetease_android_app"
+name: fleetease_android_app
+description: "FleetEase Android Flutter app."
 publish_to: 'none'
-version: 0.0.1+1
+
+version: 1.0.0+1
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
+  sdk: ^3.7.0
+  flutter: ">=3.29.0"
 
 dependencies:
   flutter:
     sdk: flutter
+  provider: ^6.1.1
+  sqflite: ^2.3.2
+  path: ^1.9.0
+  shared_preferences: ^2.2.2
+  intl: ^0.19.0
+  flutter_dotenv: ^5.2.1
+  cupertino_icons: ^1.0.8
+  flutter_staggered_grid_view: ^0.7.0
 
 dev_dependencies:
-  flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
+  flutter_lints: ^5.0.0
 
 flutter:
   uses-material-design: true
+  assets:
+    - .env
+    - assets/

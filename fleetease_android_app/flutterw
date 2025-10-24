@@ -1,19 +1,44 @@
 #!/usr/bin/env bash
-# Workspace Flutter wrapper: delegates to the Flutter app directory
 set -euo pipefail
 
-APP_DIR="fleet-management-system-179272-179281/fleetease_android_app"
+# Root-level flutter wrapper that auto-discovers the Flutter app directory
+# and executes flutter commands inside it. This helps CI systems that
+# cannot easily change working directories.
 
-if [ ! -d "$APP_DIR" ]; then
-  echo "[flutterw] App directory not found: $APP_DIR" >&2
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "${SCRIPT_DIR}"
+
+if [ ! -f "./run_flutter_ci_autodiscover.sh" ]; then
+  echo "[flutterw][ERROR] Missing run_flutter_ci_autodiscover.sh at repo root." >&2
   exit 1
 fi
 
-cd "$APP_DIR"
+# Pass through all arguments to the autodiscover script using `pub` handling:
+# - For analyze/test, we invoke directly.
+# - For arbitrary flutter args, we route via 'pub' when appropriate.
+SUBCMD="${1:-analyze}"
 
-# Print context for CI logs
-echo "[flutterw] PWD=$(pwd)"
-echo "[flutterw] Command: flutter $*"
-
-# Forward all arguments to flutter
-flutter "$@"
+case "$SUBCMD" in
+  analyze)
+    bash ./run_flutter_ci_autodiscover.sh analyze
+    ;;
+  test)
+    bash ./run_flutter_ci_autodiscover.sh test
+    ;;
+  pub)
+    shift || true
+    bash ./run_flutter_ci_autodiscover.sh pub "$@"
+    ;;
+  *)
+    # Fallback: try to execute the exact flutter command inside the discovered app dir.
+    # We reuse autodiscover to cd into the app and then exec flutter with provided args.
+    APP_DIR="$(grep -RIl --include='pubspec.yaml' '^flutter:' . | head -n 1 | xargs -I{} dirname "{}" || true)"
+    if [ -z "${APP_DIR}" ] || [ ! -d "${APP_DIR}" ]; then
+      echo "[flutterw][ERROR] Could not auto-discover Flutter app directory (no pubspec.yaml with 'flutter:' found)." >&2
+      exit 1
+    fi
+    cd "${APP_DIR}"
+    echo "[flutterw] Running inside ${APP_DIR}: flutter $*"
+    exec flutter "$@"
+    ;;
+esac

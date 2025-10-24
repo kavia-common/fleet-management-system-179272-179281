@@ -1,20 +1,18 @@
 #!/usr/bin/env bash
 set -euo pipefail
+# Force the working directory to the Flutter app and execute flutter in the same shell.
 
-# Force CI to run Flutter from the app directory, avoiding project-root errors.
 APP_DIR="fleet-management-system-179272-179281/fleetease_android_app"
 
-echo "[ci_run] PWD: $(pwd)"
 if [ ! -d "$APP_DIR" ]; then
-  echo "[ci_run][ERROR] App directory not found: $APP_DIR" >&2
+  echo "[ci_run_force] ERROR: App directory not found: $APP_DIR" >&2
   exit 1
 fi
 
 cd "$APP_DIR"
-echo "[ci_run] Entered: $(pwd)"
+export PWD="$(pwd)"
 
 ACTION="${1:-analyze}"
-
 case "$ACTION" in
   analyze)
     flutter pub get
@@ -25,10 +23,10 @@ case "$ACTION" in
     CI=true flutter test -r expanded
     ;;
   *)
-    echo "[ci_run] Unknown action: $ACTION"
-    echo "Usage: bash ci_run.sh [analyze|test]"
+    echo "[ci_run_force] Unknown action: $ACTION"
+    echo "Usage: bash ci_run_force.sh [analyze|test]"
     exit 2
     ;;
 esac
 
-echo "[ci_run] Completed $ACTION successfully."
+echo "[ci_run_force] $ACTION completed successfully."

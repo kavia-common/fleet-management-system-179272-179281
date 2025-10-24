@@ -1,0 +1,8 @@
+# CI-only Makefile to run Flutter from the correct app directory
+.PHONY: analyze test
+
+analyze:
+	@bash ci_run.sh analyze
+
+test:
+	@bash ci_run.sh test

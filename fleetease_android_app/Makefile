@@ -1,22 +1,18 @@
-# FleetEase workspace Makefile
-# Provides CI-friendly targets that run inside the Flutter app directory.
+# App-level Makefile for local and CI usage
 
-APP_DIR=fleet-management-system-179272-179281/fleetease_android_app
-
-.PHONY: all analyze test build ci
-all: analyze
+.PHONY: analyze test pub-get build-debug
 
 analyze:
-	@echo "[Make] Running analyze in $(APP_DIR)"
-	cd $(APP_DIR) && flutter pub get && flutter analyze
+	flutter pub get
+	flutter analyze
 
 test:
-	@echo "[Make] Running tests in $(APP_DIR)"
-	cd $(APP_DIR) && flutter pub get && CI=true flutter test -r expanded
+	flutter pub get
+	CI=true flutter test
 
-build:
-	@echo "[Make] Building debug APK in $(APP_DIR)"
-	cd $(APP_DIR) && flutter build apk --debug
+pub-get:
+	flutter pub get
 
-ci: analyze test
-	@echo "[Make] CI workflow complete."
+build-debug:
+	flutter pub get
+	flutter build apk --debug

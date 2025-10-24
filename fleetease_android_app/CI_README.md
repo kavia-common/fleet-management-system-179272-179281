@@ -1,12 +1,16 @@
-# FleetEase App CI
+# FleetEase Flutter CI Helper
 
-Always run Flutter from this directory (Flutter project root).
+Use the provided wrapper to ensure commands run from the app root:
 
-One-liner:
-  flutter pub get && flutter analyze && CI=true flutter test -r expanded
+Examples:
+- ./flutterw analyze
+- ./flutterw test
+- ./flutterw pub get
+- ./flutterw build apk --debug
 
-If CI runs from repository root, use any of these:
-  ./flutterw analyze && CI=true ./flutterw test -r expanded
-  bash run_mobile_checks.sh
-  bash ci_entry.sh analyze && CI=true bash ci_entry.sh test -r expanded
-  bash universal_mobile_ci.sh
+This avoids:
+> Error: Could not determine project root directory for Flutter project
+
+From repository root, you can also use:
+- bash fleet-management-system-179272-179281/run_flutter_ci_robust.sh analyze
+- bash run_flutter_ci.sh analyze

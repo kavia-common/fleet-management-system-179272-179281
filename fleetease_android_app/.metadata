@@ -1,9 +1,8 @@
-# This file tracks properties of this Flutter project.
-# Used by some tools to determine the project root and Flutter version/channel.
-
+# This file tracks properties of this workspace-level Flutter stub.
+# It helps Flutter determine project root when tools run from the repository root.
 version:
-  revision: unknown
-  channel: stable
+  revision: "stable"
+  channel: "stable"
 
 project_type: app
 

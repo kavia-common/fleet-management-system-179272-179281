@@ -1,8 +1,14 @@
 {
   "configVersion": 2,
-  "packages": [],
-  "generated": "by-ci",
-  "generator": "kavia-agent",
-  "generatorVersion": "1.0.0",
-  "flutterRootDetection": true
+  "packages": [
+    {
+      "name": "fleetease_android_app",
+      "rootUri": "../",
+      "packageUri": "lib/",
+      "languageVersion": "3.7"
+    }
+  ],
+  "generated": "by CI bootstrap",
+  "generator": "kavia-ci-bootstrap",
+  "generatorVersion": "1.0.0"
 }
